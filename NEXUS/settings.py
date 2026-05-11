@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG') == 'False'
 
-ALLOWED_HOSTS = ['boraq0000.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ultimatedoom.alwaysdata.net', 'boraq0000.pythonanywhere.com', 'localhost', '127.0.0.1']
 render_external_hostname = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if render_external_hostname:
     ALLOWED_HOSTS.append(render_external_hostname)
