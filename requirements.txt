@@ -1,0 +1,9 @@
+Django==6.0.5
+psycopg2-binary==2.9.12
+python-dotenv==1.2.2
+dj-database-url==3.1.2
+django-axes==8.3.1
+django-ratelimit==4.1.0
+Pillow==12.2.0
+gunicorn==22.0.0
+whitenoise==6.6.0

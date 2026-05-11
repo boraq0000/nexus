@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXUS – University Projects Marketplace</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="nav" id="navbar">
+  <div class="nav-inner container">
+    <div class="logo" onclick="showPage('home')">
+      <div class="logo-icon">
+        <img src="/static/logo.png" alt="NEXUS Logo" class="logo-img">
+      </div>
+      <span class="logo-text">NEXUS</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#" class="nav-link active" data-page="home" onclick="showPage('home');return false;">Home</a>
+      <a href="#" class="nav-link" data-page="gallery" onclick="showPage('gallery');return false;">Projects Gallery</a>
+      <a href="#" class="nav-link" data-page="dashboard" onclick="showPage('dashboard');return false;">Dashboard</a>
+      <a href="#" class="nav-link" data-page="about" onclick="showPage('about');return false;">About Us</a>
+    </nav>
+    
+      <button class="btn-login" id="navLoginBtn" onclick="openModal('signin')">Login</button>
+      <button class="btn-signup" id="navSignupBtn" onclick="openModal('signup')">Sign Up</button>
+      <button class="btn-logout" id="navLogoutBtn" onclick="handleLogout()" style="display:none;">Logout</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">&#9776;</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="showPage('home');closeMobileMenu();return false;">Home</a>
+    <a href="#" onclick="showPage('gallery');closeMobileMenu();return false;">Projects Gallery</a>
+    <a href="#" onclick="showPage('about');closeMobileMenu();return false;">About Us</a>
+    <a href="#" onclick="openModal('signin');closeMobileMenu();return false;">Login</a>
+  </div>
+</header>
+
+<!-- HOME PAGE -->
+<main id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <p class="hero-label">University Projects Marketplace</p>
+      <h1 class="hero-title">Welcome to <span class="gold">NEXUS</span></h1>
+      <p class="hero-subtitle">The first marketplace for showcasing, selling, and investing in innovative student projects</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('gallery')">Explore Projects &rarr;</button>
+        <button class="btn-outline" onclick="showPage('about')">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-bar">
+    <div class="container stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🚀</div>
+        <div class="stat-value">2,500+</div>
+        <div class="stat-label">Active Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-value">15,000+</div>
+        <div class="stat-label">Student Participants</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-value">300+</div>
+        <div class="stat-label">Collaborating Professors</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📈</div>
+        <div class="stat-value">$1.2M</div>
+        <div class="stat-label">Funding Provided</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Serves Everyone -->
+  <section class="serves section">
+    <div class="container">
+      <h2 class="section-title"><span class="gold">NEXUS</span> Serves Everyone</h2>
+      <div class="serves-grid">
+        <div class="serve-card">
+          <div class="serve-icon-wrap">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="5" stroke="currentColor" stroke-width="2"/><path d="M6 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>For Students</h3>
+          <ul>
+            <li>Showcase all types of projects</li>
+            <li>Full control over project status</li>
+            <li>Options for sale and investment</li>
+            <li>Direct connection with investors</li>
+            <li>Transparent and fair evaluation</li>
+          </ul>
+          <button class="btn-primary" onclick="openModal('signup')">Register as Student</button>
+        </div>
+        <div class="serve-card">
+          <div class="serve-icon-wrap">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="12" r="5" stroke="currentColor" stroke-width="2"/><path d="M10 20l2 8 4-4 4 4 2-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>For Professors</h3>
+          <ul>
+            <li>Structured evaluation using Rubrics</li>
+            <li>Write detailed comments</li>
+            <li>Determine each student's contribution</li>
+            <li>Track project progress</li>
+            <li>Easy and efficient management</li>
+          </ul>
+          <button class="btn-dark" onclick="openModal('signup')">Join as Professor</button>
+        </div>
+        <div class="serve-card">
+          <div class="serve-icon-wrap">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M4 20 L10 14 L16 18 L28 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,8 28,8 28,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>For Investors</h3>
+          <ul>
+            <li>Discover innovative projects</li>
+            <li>Ready prototypes available</li>
+            <li>Micro-funding opportunities</li>
+            <li>Partnership and incubation offers</li>
+            <li>Direct access to talent</li>
+          </ul>
+          <button class="btn-primary" onclick="openModal('signup')">Invest Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="featured section">
+    <div class="container">
+      <div class="section-header-row">
+        <h2 class="section-title">Featured <span class="gold">Projects</span></h2>
+        <button class="btn-primary" onclick="showPage('gallery')">View All Projects &rarr;</button>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-thumb">
+            <svg viewBox="0 0 60 60" fill="none"><path d="M15 45 L15 25 L30 15 L45 25 L45 45 Z" stroke="#b8922f" stroke-width="2"/><rect x="22" y="32" width="8" height="13" rx="1" stroke="#b8922f" stroke-width="1.5"/><circle cx="30" cy="22" r="2" fill="#b8922f"/></svg>
+          </div>
+          <div class="project-meta">
+            <span class="project-category">Information Technology</span>
+            <span class="badge green">For Sale</span>
+          </div>
+          <h4 class="project-name">Smart Library Management System</h4>
+          <p class="project-desc">Comprehensive library management system with AI-powered book recommendations</p>
+          <div class="project-tags"><span>React</span><span>Node.js</span><span>MongoDB</span></div>
+          <div class="project-stats"><span>⭐ 4.8</span><span>👁 1,240</span></div>
+          <div class="project-footer">
+            <span class="project-price">$5,000</span>
+            <button class="btn-dark-sm">View Details</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb">
+            <svg viewBox="0 0 60 60" fill="none"><path d="M10 50 L20 30 L30 38 L50 15" stroke="#b8922f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="40,15 50,15 50,25" stroke="#b8922f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="project-meta">
+            <span class="project-category">Computer Science</span>
+            <span class="badge blue">For Investment</span>
+          </div>
+          <h4 class="project-name">Interactive Learning Platform</h4>
+          <p class="project-desc">Gamified learning platform with real-time progress tracking</p>
+          <div class="project-tags"><span>Python</span><span>Django</span><span>Vue.js</span></div>
+          <div class="project-stats"><span>⭐ 4.9</span><span>👁 2,100</span></div>
+          <div class="project-footer">
+            <span class="project-price funding">Funding Needed</span>
+            <button class="btn-dark-sm">View Details</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb">
+            <svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="14" stroke="#b8922f" stroke-width="2"/><circle cx="30" cy="30" r="6" stroke="#b8922f" stroke-width="1.5"/><line x1="30" y1="16" x2="30" y2="11" stroke="#b8922f" stroke-width="2" stroke-linecap="round"/><line x1="30" y1="44" x2="30" y2="49" stroke="#b8922f" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="30" x2="11" y2="30" stroke="#b8922f" stroke-width="2" stroke-linecap="round"/><line x1="44" y1="30" x2="49" y2="30" stroke="#b8922f" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="project-meta">
+            <span class="project-category">Mobile Applications</span>
+            <span class="badge gray">For Display</span>
+          </div>
+          <h4 class="project-name">Health App for Athletes</h4>
+          <p class="project-desc">Track fitness metrics, nutrition, and training schedules</p>
+          <div class="project-tags"><span>React Native</span><span>Firebase</span></div>
+          <div class="project-stats"><span>⭐ 4.7</span><span>👁 850</span></div>
+          <div class="project-footer">
+            <span class="project-price display">Display Only</span>
+            <button class="btn-dark-sm">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-works section">
+    <div class="container">
+      <h2 class="section-title">How Does <span class="gold">NEXUS</span> Work?</h2>
+      <div class="steps-timeline">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-card">
+            <h4>Register</h4>
+            <p>Create your account as a student, professor, or investor</p>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step right">
+          <div class="step-num">2</div>
+          <div class="step-card">
+            <h4>Upload Your Project</h4>
+            <p>Showcase your project with all details and media</p>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-card">
+            <h4>Get Evaluated</h4>
+            <p>Professors evaluate the project with clear criteria</p>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step right">
+          <div class="step-num">4</div>
+          <div class="step-card">
+            <h4>Connect with Investors</h4>
+            <p>Start negotiations and secure funding</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div>
+        <h2>Ready to Join <span class="gold">NEXUS</span>?</h2>
+        <p>Join the leading marketplace for university projects</p>
+        <div class="cta-roles">
+          <div class="cta-role">
+            <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="9" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 24c0-4.97 4.03-9 9-9s9 4.03 9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div><strong>For Students</strong><br/><small>Showcase and monetize your projects</small></div>
+          </div>
+          <div class="cta-role">
+            <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M8 18l2 7 4-3 4 3 2-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><strong>For Professors</strong><br/><small>Streamlined evaluation and feedback</small></div>
+          </div>
+          <div class="cta-role">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M3 18l5-5 6 4 10-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="19,8 24,8 24,13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><strong>For Investors</strong><br/><small>Discover innovative opportunities</small></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-primary btn-large" onclick="openModal()">Sign In &rarr;</button>
+    </div>
+  </section>
+
+</main>
+
+<!--  PROJECTS GALLERY PAGE -->
+<main id="page-gallery" class="page">
+
+  <section class="gallery-hero">
+    <div class="container">
+      <h1 class="gallery-title">Projects <span class="gold">Gallery</span></h1>
+      <p class="gallery-sub">Discover innovative student projects from universities worldwide</p>
+      <div class="gallery-search">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="#aaa" stroke-width="1.5"/><line x1="13.5" y1="13.5" x2="18" y2="18" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input type="text" id="gallerySearch" placeholder="Search projects by name, description, or technology..." oninput="filterProjects()" />
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-body section">
+    <div class="container">
+      <div class="gallery-toolbar">
+        <div id="projectCount" class="gallery-count">12 Projects Found</div>
+        <div class="gallery-filters">
+          <select id="filterCategory" onchange="filterProjects()">
+            <option value="">All Categories</option>
+            <option>Information Technology</option>
+            <option>Computer Science</option>
+            <option>Mobile Applications</option>
+            <option>Data Science</option>
+            <option>Cybersecurity</option>
+          </select>
+          <select id="filterStatus" onchange="filterProjects()">
+            <option value="">All Statuses</option>
+            <option>For Sale</option>
+            <option>For Investment</option>
+            <option>For Display</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- cards rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- DASHBOARD PAGE -->
+<main id="page-dashboard" class="page">
+  <section class="dashboard-hero section">
+    <div class="container">
+      <h1 class="dashboard-title">Welcome to Your <span class="gold">Dashboard</span></h1>
+      <p class="dashboard-sub" id="dashboardSub">Login to view your projects and actions.</p>
+      <div class="dashboard-widgets" id="dashboardWidgets"></div>
+    </div>
+  </section>
+
+  <section class="dashboard-actions section">
+    <div class="container">
+      <div id="studentPanel" style="display:none;">
+        <h2>Student Actions</h2>
+        <form id="createProjectForm" class="dashboard-form">
+          <label>Project Title</label>
+          <input id="projectTitle" type="text" placeholder="Project title" />
+          <label>Description</label>
+          <textarea id="projectDescription" rows="4" placeholder="Project description"></textarea>
+          <label>Project Type</label>
+          <select id="projectStatus">
+            <option>For Investment</option>
+            <option>For Sale</option>
+            <option>For Display</option>
+          </select>
+          <label>Professor</label>
+          <select id="projectProfessorId" required>
+            <option value="">-- Select a Professor --</option>
+          </select>
+          <label>Category / Badge</label>
+          <input id="projectBadge" type="text" placeholder="Category or badge" />
+          <button class="btn-primary" type="submit">Create Project</button>
+          <div id="createProjectMessage" class="dashboard-message"></div>
+        </form>
+        <div class="dashboard-card" id="studentProjectsPanel">
+          <h3>Your Projects</h3>
+          <div id="studentProjectsList" class="dashboard-list"></div>
+        </div>
+      </div>
+
+      <div id="professorPanel" style="display:none;">
+        <h2>Professor Actions</h2>
+        <div class="dashboard-card">
+          <h3>Assigned Projects</h3>
+          <div id="professorProjectsList" class="dashboard-list"></div>
+        </div>
+      </div>
+
+      <div id="investorPanel" style="display:none;">
+        <h2>Investor Actions</h2>
+        <div class="dashboard-card">
+          <h3>Approved Projects</h3>
+          <div id="investorProjectsList" class="dashboard-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!--  ABOUT US PAGE  -->
+<main id="page-about" class="page">
+
+  <!-- Problem / Solution -->
+  <section class="about-hero section">
+    <div class="container">
+      <h1 class="about-title">About <span class="gold">NEXUS</span></h1>
+      <p class="about-subtitle">We're building the bridge between academic excellence and real-world opportunities</p>
+      <div class="problem-solution-grid">
+        <div class="ps-card problem">
+          <div class="ps-icon">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/><line x1="16" y1="10" x2="16" y2="17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="21" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <h3>The Problem</h3>
+          <p>Every year, thousands of brilliant student projects receive their grades and are shelved away, never to be seen again.</p>
+          <ul>
+            <li>Students miss out on real opportunities in the job market</li>
+            <li>Investors overlook fresh, innovative ideas</li>
+            <li>Brilliant innovations go unnoticed and underutilized</li>
+          </ul>
+        </div>
+        <div class="ps-card solution">
+          <div class="ps-icon">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M16 4 L20 13 L29 13 L22 19 L25 28 L16 23 L7 28 L10 19 L3 13 L12 13 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Our Solution</h3>
+          <p>NEXUS is a university marketplace designed to organize and evaluate academic projects, functioning as a commercial platform for showcasing, selling, or investing in projects.</p>
+          <ul>
+            <li>Ensure students earn financially or gain visibility</li>
+            <li>Connect investors with innovative ideas</li>
+            <li>Transform academic work into real-world opportunities</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- User Benefits -->
+  <section class="user-benefits section">
+    <div class="container">
+      <h2 class="section-title">Our <span class="gold">Goals</span> & Advantages</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="5" stroke="currentColor" stroke-width="2"/><path d="M6 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>For Students</h4>
+          <ul>
+            <li>Showcase all types of projects (academic, artistic, or handmade)</li>
+            <li>Full control over project status (for sale, investment, or display)</li>
+            <li>Accurately assess individual contributions in teamwork</li>
+            <li>Monetize your work or gain valuable exposure</li>
+          </ul>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="12" r="5" stroke="currentColor" stroke-width="2"/><path d="M10 20l2 8 4-4 4 4 2-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>For Professors</h4>
+          <ul>
+            <li>Streamlined evaluation process with clear rubrics</li>
+            <li>Provide detailed feedback and comments</li>
+            <li>Accurately assess individual contributions in teamwork</li>
+          </ul>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M4 20 L10 14 L16 18 L28 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,8 28,8 28,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>For Investors</h4>
+          <ul>
+            <li>Dedicated interface to view project prototypes</li>
+            <li>Offer micro-funding or partnership opportunities</li>
+            <li>Discover fresh talent and innovative ideas early</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission / Vision -->
+  <section class="mission-vision section">
+    <div class="container">
+      <div class="mv-grid">
+        <div class="mv-card">
+          <div class="mv-icon">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="5" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <h3>Our Mission</h3>
+          <p>To empower students by providing a platform that transforms their academic projects into tangible opportunities, connecting them with investors, employers, and the broader innovation ecosystem.</p>
+        </div>
+        <div class="mv-card">
+          <div class="mv-icon">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/><path d="M10 16 a6 6 0 1 0 12 0 a6 6 0 1 0 -12 0" stroke="currentColor" stroke-width="2"/><line x1="22" y1="10" x2="26" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Our Vision</h3>
+          <p>To become the leading global marketplace for student innovation, where every brilliant idea gets the recognition and support it deserves, fostering a new generation of entrepreneurs and innovators.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="core-values section">
+    <div class="container">
+      <h2 class="section-title">Our Core <span class="gold">Values</span></h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="val-icon">
+            <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M14 15 L14 28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="20" x2="18" y2="20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h5>Innovation</h5>
+          <p>Fostering creativity and original thinking</p>
+        </div>
+        <div class="value-card">
+          <div class="val-icon">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M14 3 L17 9 L24 9.5 L19 14 L20.5 21 L14 17.5 L7.5 21 L9 14 L4 9.5 L11 9 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <h5>Transparency</h5>
+          <p>Clear evaluation and fair processes</p>
+        </div>
+        <div class="value-card">
+          <div class="val-icon">
+            <svg viewBox="0 0 28 28" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M2 24c0-4.42 3.58-8 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M18 16c4.42 0 8 3.58 8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h5>Community</h5>
+          <p>Building connections that matter</p>
+        </div>
+        <div class="value-card">
+          <div class="val-icon">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M4 20 L9 15 L14 18 L24 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="19,9 24,9 24,14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h5>Growth</h5>
+          <p>Supporting continuous development</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXUS By The Numbers -->
+  <section class="about-stats section">
+    <div class="container">
+      <h2 class="section-title"><span class="gold">NEXUS</span> By The Numbers</h2>
+      <div class="stats-grid">
+        <div class="stat-card big"><div class="stat-icon">🚀</div><div class="stat-value">2,500+</div><div class="stat-label">Active Projects</div></div>
+        <div class="stat-card big"><div class="stat-icon">👥</div><div class="stat-value">15,000+</div><div class="stat-label">Student Participants</div></div>
+        <div class="stat-card big"><div class="stat-icon">🏆</div><div class="stat-value">300+</div><div class="stat-label">Collaborating Professors</div></div>
+        <div class="stat-card big"><div class="stat-icon">📈</div><div class="stat-value">$1.2M</div><div class="stat-label">Funding Provided</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- LOGIN MODAL  -->
+<div id="loginModal" class="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <h2 class="modal-title" id="modalTitle">Sign In</h2>
+    <p class="modal-sub">I am a...</p>
+    <div class="role-picker">
+      <div class="role-btn active" data-role="student" onclick="selectRole('student', this)">
+        <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="9" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 24c0-4.97 4.03-9 9-9s9 4.03 9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Student
+      </div>
+      <div class="role-btn" data-role="professor" onclick="selectRole('professor', this)">
+        <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M8 18l2 7 4-3 4 3 2-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Professor
+      </div>
+      <div class="role-btn" data-role="investor" onclick="selectRole('investor', this)">
+        <svg viewBox="0 0 28 28" fill="none"><path d="M3 18l5-5 6 4 10-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="19,8 24,8 24,13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Investor
+      </div>
+    </div>
+
+    <div id="loginMessage" class="modal-message"></div>
+
+    <form onsubmit="return false;" class="login-form" id="signinform">
+
+      <label>Email Address</label>
+      <div class="input-wrap">
+        <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input id="loginEmail" type="email" placeholder="Enter your email" />
+      </div>
+
+      <label>Password</label>
+      <div class="input-wrap">
+        <svg viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input id="loginPassword" type="password" placeholder="Enter your password" />
+      </div>
+
+      <div class="login-options">
+        <label class="checkbox-wrap"><input type="checkbox"/> Remember me</label>
+        <a href="#" class="forgot">Forgot password?</a>
+      </div>
+
+      <button class="btn-primary btn-full" type="submit">Sign In &rarr;</button>
+
+      <p class="signup-link">Don't have an account? <a href="#" onclick="openModal('signup'); return false;">Sign Up</a></p>
+
+      <div class="divider"><span>Or continue with</span></div>
+      <div class="social-btns">
+        <button class="social-btn">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M19 10.2c0-.7-.1-1.3-.2-2H10v3.8h5.1a4.4 4.4 0 01-1.9 2.9v2.4h3.1c1.8-1.7 2.9-4.1 2.9-7.1z" fill="#4285f4"/><path d="M10 19c2.6 0 4.7-.8 6.3-2.3l-3.1-2.4c-.8.6-1.9.9-3.2.9-2.5 0-4.6-1.7-5.4-3.9H1.4v2.5C3 17 6.2 19 10 19z" fill="#34a853"/><path d="M4.6 11.3a5.3 5.3 0 010-3.4V5.4H1.4a9 9 0 000 8.1l3.2-2.2z" fill="#fbbc05"/><path d="M10 4.8c1.4 0 2.6.5 3.6 1.4l2.7-2.7C14.7 1.9 12.5 1 10 1 6.2 1 3 3 1.4 6l3.2 2.5C5.4 6.5 7.5 4.8 10 4.8z" fill="#ea4335"/></svg>
+          Google
+        </button>
+        <button class="social-btn">
+          <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" fill="#00a4ef"/><path d="M6 6h4v4H6z" fill="white"/><path d="M11 6h4v4h-4z" fill="white" opacity=".7"/><path d="M6 11h4v4H6z" fill="white" opacity=".7"/><path d="M11 11h4v4h-4z" fill="white"/></svg>
+          Microsoft
+        </button>
+      </div>
+
+      <div class="back-link"><a href="#" onclick="closeModal()">← Back to Home</a></div>
+    </form>
+
+    <form onsubmit="return false;" class="signup-form" id="signupForm" style="display:none;" >
+
+      <label>Full Name</label>
+      <div class="input-wrap">
+        <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input id="signupName" type="text" placeholder="Enter your full name" />
+      </div>
+
+
+      <label>Email Address</label>
+      <div class="input-wrap">
+        <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input id="signupEmail" type="email" placeholder="Enter your email" />
+      </div>
+
+      <label>Password</label>
+      <div class="input-wrap">
+        <svg viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input id="signupPassword" type="password" placeholder="Enter your password" />
+      </div>
+
+      <div class="login-options">
+        <label class="checkbox-wrap"><input type="checkbox"/> Remember me</label>
+        <a href="#" class="forgot">Forgot password?</a>
+      </div>
+
+      <button class="btn-primary btn-full" type="submit">Sign Up &rarr;</button>
+
+      <p class="signup-link">Already have an account? <a href="#" onclick="openModal('signin'); return false;">Sign In</a></p>
+
+      <div class="divider"><span>Or continue with</span></div>
+      <div class="social-btns">
+        <button class="social-btn">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M19 10.2c0-.7-.1-1.3-.2-2H10v3.8h5.1a4.4 4.4 0 01-1.9 2.9v2.4h3.1c1.8-1.7 2.9-4.1 2.9-7.1z" fill="#4285f4"/><path d="M10 19c2.6 0 4.7-.8 6.3-2.3l-3.1-2.4c-.8.6-1.9.9-3.2.9-2.5 0-4.6-1.7-5.4-3.9H1.4v2.5C3 17 6.2 19 10 19z" fill="#34a853"/><path d="M4.6 11.3a5.3 5.3 0 010-3.4V5.4H1.4a9 9 0 000 8.1l3.2-2.2z" fill="#fbbc05"/><path d="M10 4.8c1.4 0 2.6.5 3.6 1.4l2.7-2.7C14.7 1.9 12.5 1 10 1 6.2 1 3 3 1.4 6l3.2 2.5C5.4 6.5 7.5 4.8 10 4.8z" fill="#ea4335"/></svg>
+          Google
+        </button>
+        <button class="social-btn">
+          <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" fill="#00a4ef"/><path d="M6 6h4v4H6z" fill="white"/><path d="M11 6h4v4h-4z" fill="white" opacity=".7"/><path d="M6 11h4v4H6z" fill="white" opacity=".7"/><path d="M11 11h4v4h-4z" fill="white"/></svg>
+          Microsoft
+        </button>
+      </div>
+
+      <div class="back-link"><a href="#" onclick="closeModal()">← Back to Home</a></div>
+    </form>
+
+  </div>
+</div>
+
+<!-- PROJECT DETAILS MODAL -->
+<div id="projectModal" class="modal-overlay" onclick="closeProjectModal(event)" style="display:none;">
+  <div class="modal" style="max-width: 600px;">
+    <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+    <h2 class="modal-title" id="projectModalTitle">Project Details</h2>
+    
+    <div id="projectModalContent">
+      <div id="projectOwnerSection" style="display:none;">
+        <h3 style="margin-top: 20px; font-size: 16px; font-weight: 600;">Invite Member</h3>
+        <form id="inviteMemberForm" class="dashboard-form" style="margin: 15px 0;">
+          <label>Member Name</label>
+          <select id="inviteUserId" required style="width:100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+            <option value="">-- Select a Student --</option>
+          </select>
+          <button class="btn-primary" type="submit" style="width:100%;">Send Invite</button>
+          <div id="inviteMemberMessage" class="dashboard-message" style="margin-top: 10px;"></div>
+        </form>
+      </div>
+
+      <h3 style="margin-top: 20px; font-size: 16px; font-weight: 600;">Team Members</h3>
+      <div id="projectMembersList" style="margin-top: 10px; font-size: 13px;">
+        <p>Loading members...</p>
+      </div>
+
+      <h3 style="margin-top: 20px; font-size: 16px; font-weight: 600;">Grades</h3>
+      <div id="projectGradesList" style="margin-top: 10px; font-size: 13px;">
+        <p>Loading grades...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <div class="logo-icon">
+         <img src="/static/logo.png" alt="NEXUS Logo" class="logo-img">
+      </div>
+      <span>NEXUS</span>
+    </div>
+    <p class="footer-tagline">Cultivating Innovators. Funding Futures.</p>
+    <p class="footer-copy">&copy; 2026 NEXUS. All rights reserved. | Team FBC</p>
+  </div>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
+<form method="post">
+    {% csrf_token %} ...
+</form>
